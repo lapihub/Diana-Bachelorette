@@ -52,7 +52,7 @@
 
   .container-editorial {
     @apply mx-auto w-full max-w-6xl px-6 sm:px-10;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   .card-paper {

@@ -17,7 +17,7 @@ export default function ForDiana() {
           <p className="mt-6 text-sm text-ink-soft">
             Bilderna skickar du via{" "}
             <Link href="/bilder" className="text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold-deep">
-              Skicka bilder
+              Bilder & minnen
             </Link>
             . Brevet lämnar du till arrangörerna.
           </p>

@@ -22,15 +22,16 @@ npm run build    # testar att allt bygger korrekt innan du publicerar
 
 **Allt innehåll ligger i en enda fil: [`content/weekend.ts`](content/weekend.ts)**
 
-Där finns tider, adresser, priser, lekar, packlistan och inköpslistan. Varje del har en kommentar som förklarar vad den gör.
+Där finns tider, adresser, priser, lekar, packlistan och det vi köper in. Varje del har en kommentar som förklarar vad den gör.
 
 Sidorna (Helgen, Villan, Budget, …) och deras ordning i menyn styrs av [`lib/pages.ts`](lib/pages.ts).
 
-### Exempel: markera något som köpt
+### Exempel: lägga till något på sidan Inköp
+
+Under `shopping` finns en lista per kategori. Lägg bara till en rad:
 
 ```ts
-{ label: "Ballonger", status: "toBuy" },   // före
-{ label: "Ballonger", status: "done" },    // efter, visas överstruket
+items: ["Ljus / LED-ljus", "Blommor", "Konfetti"],
 ```
 
 ### Exempel: ändra ett pris
@@ -54,16 +55,14 @@ Sidan visar bara etiketter för det som inte är klart än, så att den inte bli
 | `"toBook"`    | ATT BOKA                                |
 | `"confirmed"` | ingen etikett (klart)                   |
 | `"booked"`    | ingen etikett (BOKAT visas bara på villan) |
-| `"toBuy"`     | ingen etikett                           |
-| `"done"`      | överstruket i inköpslistan              |
 
-### Länkar (formulär, bilduppladdning, Swish)
+### Länkar (minnesformulär, bilduppladdning, Swish)
 
 Längst upp i filen finns `links`:
 
 ```ts
-memoryForm: "https://forms.gle/....",                 // anonyma minnen till "Gissa minnet"
-photoUpload: "https://www.dropbox.com/request/....",  // knappen på sidan Skicka bilder
+web3formsKey: "xxxxxxxx-....",                        // minnesformuläret, se nedan
+photoUpload: "https://www.dropbox.com/request/....",  // knappen på sidan Bilder & minnen
 payment: "Swish 070-123 45 67",
 ```
 
@@ -77,7 +76,7 @@ Lägg till `address: "Gatan 1, Viksjö"` på en rad i schemat om adressen ska vi
 
 ## Bilduppladdning: få bilderna via Dropbox + mejl
 
-Sidan **Skicka bilder** har en knapp där alla kan ladda upp bilder med eller på Diana, utan konto eller inloggning. Det enklaste och gratis sättet är en **Dropbox-filförfrågan** ("File request"):
+Sidan **Bilder & minnen** har en knapp där alla kan ladda upp bilder med eller på Diana, utan konto eller inloggning. Det enklaste och gratis sättet är en **Dropbox-filförfrågan** ("File request"):
 
 1. Skapa ett gratis konto på [dropbox.com](https://www.dropbox.com) (2 GB ingår).
 2. Gå till **Filförfrågningar** (*File requests*): [dropbox.com/requests](https://www.dropbox.com/requests).
@@ -92,6 +91,23 @@ Sidan **Skicka bilder** har en knapp där alla kan ladda upp bilder med eller p�
 Den som laddar upp fyller bara i sitt namn och väljer bilderna. **Du får ett mejl** från Dropbox varje gång någon laddar upp, och bilderna hamnar i din Dropbox-mapp i full kvalitet. Ingen annan kan se de uppladdade bilderna.
 
 Du kan också dela samma länk direkt i Snapchat, eller länka till sidan `/bilder` (t.ex. `dianas-bridal-weekend.vercel.app/bilder`).
+
+---
+
+## Minnesformuläret: få minnena på mejl (Web3Forms)
+
+På sidan **Bilder & minnen** finns ett formulär där alla skriver sitt namn och ett minne med Diana (till leken Gissa minnet). Varje inskick kommer som ett **mejl** till dig via den gratis tjänsten [Web3Forms](https://web3forms.com) (250 inskick per månad).
+
+Nyckeln är redan inlagd. Vill du byta mottagare:
+
+1. Gå till [web3forms.com](https://web3forms.com), skriv in den mejladress som ska få minnena och klicka **Create Access Key**.
+2. Nyckeln kommer på mejl. Klistra in den i `content/weekend.ts`:
+   ```ts
+   web3formsKey: "din-nya-nyckel",
+   ```
+3. Pusha till GitHub.
+
+Tips: kolla skräpposten första gången, och markera mejlet som "inte skräp". Nyckeln är gjord för att synas publikt, men din mejladress syns aldrig på sajten.
 
 ---
 
@@ -145,7 +161,7 @@ git push -u origin main
 
 ```bash
 git add .
-git commit -m "Uppdatera inköpslistan"
+git commit -m "Uppdatera innehåll"
 git push
 ```
 

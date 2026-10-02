@@ -4,20 +4,16 @@
  * ============================================================
  *
  *  Allt som kan ändras ligger i den här filen: tider, adresser,
- *  priser, status, lekar och inköpslistan.
+ *  priser, status, lekar och inköpen.
  *
  *  STATUS — använd något av dessa ord (inom citattecken):
  *    "confirmed"  → bekräftat   (visas inte, det är standard)
- *    "booked"     → BOKAT
+ *    "booked"     → BOKAT       (visas bara på villan)
  *    "toBook"     → ATT BOKA
  *    "tbc"        → TBC
  *    "idea"       → IDÉ
- *    "toBuy"      → att köpa    (visas inte i inköpslistan, det är standard)
- *    "done"       → klart       (visas överstruket i inköpslistan)
  *
- *  Exempel: ändra { label: "Ballonger", status: "toBuy" }
- *        till { label: "Ballonger", status: "done" }
- *  → spara, pusha till GitHub, så uppdateras sidan automatiskt.
+ *  Ändra, spara, pusha till GitHub, så uppdateras sidan automatiskt.
  * ============================================================
  */
 
@@ -50,8 +46,12 @@ export const event = {
 
 export const links = {
   airbnb: "https://www.airbnb.se/rooms/1780669211066889679",
-  /** Google Formulär för anonyma minnen till leken "Gissa minnet". */
-  memoryForm: "",
+  /**
+   * Nyckel till minnesformuläret (Web3Forms). Varje inskickat minne
+   * kommer som ett mejl. Ny nyckel skapas gratis på web3forms.com.
+   * Nyckeln är gjord för att ligga publikt på sajten.
+   */
+  web3formsKey: "8f02526f-5df1-4305-90e4-e7cac70e911b",
   /**
    * Länk där alla kan ladda upp bilder utan konto, t.ex. en
    * Dropbox-filförfrågan (https://www.dropbox.com/request/...).
@@ -63,7 +63,7 @@ export const links = {
 };
 
 /* ------------------------------------------------------------
- *  VIKTIGA DATUM  (visas på startsidan)
+ *  BETALNING  (visas på sidan Budget)
  * ---------------------------------------------------------- */
 
 export const paymentDeadline = {
@@ -71,12 +71,6 @@ export const paymentDeadline = {
   month: "november",
   title: "Sista dag för betalning",
   description: "Alla betalningar för Airbnb ska vara inne senast den här dagen.",
-};
-
-export const cancellationDeadline = {
-  day: "20",
-  month: "november",
-  title: "Sista avbokningsdag för Airbnb",
 };
 
 /* ------------------------------------------------------------
@@ -129,7 +123,7 @@ export const schedule: ScheduleDay[] = [
         time: "15:00",
         title: "Incheckning i villan",
         description: "Vi checkar in i Viksjö och gör i ordning dekorationerna innan kvällen.",
-        location: "Airbnb",
+        location: "Basetvägen 2 - Järfälla",
         status: "confirmed",
       },
       {
@@ -189,7 +183,7 @@ export const transport: { title: string; text: string; status: Status }[] = [
   },
   {
     title: "Hem på söndag",
-    text: "Utcheckning 11:00. Samåkning, Bolt eller kollektivtrafik från Jakobsberg.",
+    text: "Utcheckning 11:00. Samåkning, Bolt eller kollektivtrafik.",
     status: "tbc",
   },
 ];
@@ -267,7 +261,7 @@ export const budget = {
   items: [
     { label: "Frukost hos Dianas föräldrar", min: 160, status: "confirmed" },
     { label: "Keramikmålning", min: 220, max: 500, status: "tbc" },
-    { label: "Airbnb", min: 900, status: "booked" },
+    { label: "Boende", min: 900, status: "booked" },
     { label: "Privatkock", min: 700, status: "toBook" },
     { label: "Dekorationer", min: 150, status: "confirmed" },
     { label: "Söndagsfrukost", min: 150, status: "confirmed" },
@@ -281,47 +275,51 @@ export const budget = {
  *  DRESSCODE & PACKLISTA
  * ---------------------------------------------------------- */
 
+/** Visas som en stämpel i hörnet: "Dresscode: SVART". */
+export const dressCodeColor = "Svart";
+
 export const dressCode: { title: string; text: string; status?: Status }[] = [
-  { title: "Dagtid", text: "Bekvämt och snyggt. Keramikfärg kan stänka, så ta inte ditt finaste plagg." },
-  {
-    title: "Kvällen",
-    text: "Elegant middag - tänk er 'Black tie'.",
-    status: "tbc",
-  },
-  { title: "Bruden", text: "Diana bär vitt. Vi står för outfiten och packar den i hemlighet." },
+  { title: "Dagtid", text: "Bekvämt och snyggt i svart. Keramikfärg kan stänka, så ta inte ditt finaste plagg." },
+  { title: "Kvällen", text: "Elegant middag i svart, tänk black tie." },
+  { title: "Bruden", text: "Diana bär vitt hela dagen. Vi står för outfiten och packar den i hemlighet." },
 ];
 
 export const packingList: string[] = [
-  "Baddräkt eller bikini",
+  "Baddräkt / bikini",
   "Kvällsoutfit",
   "Bekväma kläder för dagen",
   "Mjukiskläder & nattkläder",
-  "Morgonrock & tofflor",
-  "Kläder till söndagen",
-  "Smink, hårprodukter & locktång",
-  "Necessär & mediciner",
-  "Mobilladdare",
+  "Sovmask & öronproppar",
+  "Hår- & kroppsprodukter",
+  "Smink & hudvård",
+  "Mediciner",
+  "Mobilladdare / Elektronik",
   "Varm jacka",
 ];
 
 /* ------------------------------------------------------------
- *  SKICKA BILDER  (sidan /bilder)
+ *  BILDER & MINNEN  (sidan /bilder)
  * ---------------------------------------------------------- */
 
 export const photos = {
   /** T.ex. "1 november". Tomt = visas inte. */
   deadline: "",
+  intro:
+    "Det finns ingen gräns. Skicka allt ni har med Diana: gamla, nya, fina, kaos, screenshots.",
   wanted: [
-    { title: "Diana som barn & tonåring", text: "Till leken Hur gammal var bruden? och Diana Museum." },
-    { title: "Du och Diana", text: "1–3 favoriter till scrapbooken." },
-    { title: "Roliga minnen", text: "Skärmdumpar, biljetter, gamla looks och annat till museet." },
+    { title: "Gamla & nya", text: "Från barndomen till förra helgen." },
+    { title: "Fina & kaos", text: "De snygga bilderna och de som aldrig borde ha tagits." },
+    { title: "Screenshots & inside jokes", text: "Konversationer, memes, biljetter, allt som är typiskt Diana." },
   ],
+  memory: {
+    title: "Ditt minne",
+    text: "Till leken Gissa minnet. Skriv ett specifikt och gärna roligt minne med Diana. Vi ser ditt namn, men Diana får gissa vem som skrev vad.",
+  },
 };
 
 /* ------------------------------------------------------------
  *  LEKAR
- *  submit: "memoryForm" visar knapp till formuläret,
- *          "photos" visar knapp till sidan Skicka bilder.
+ *  submit: "memory" visar en knapp till minnesformuläret.
  * ---------------------------------------------------------- */
 
 export type Game = {
@@ -330,27 +328,30 @@ export type Game = {
   /** När leken körs under dagen. */
   when: string;
   intro: string;
-  steps?: string[];
   listTitle?: string;
   list?: string[];
-  needed: string[];
-  submit?: "memoryForm" | "photos";
+  submit?: "memory";
 };
 
 export const games: Game[] = [
   {
     number: "I",
+    title: "Hemliga uppdrag",
+    when: "Hela dagen",
+    intro:
+      "Alla får ett hemligt uppdrag på morgonen som ska genomföras utan att Diana märker något. Efter middagen avslöjar alla sina uppdrag, och Diana gissar vad var och en försökte göra.",
+  },
+  {
+    number: "II",
     title: "Hur gammal var bruden?",
     when: "Under kvällen",
     intro:
       "Vi visar foton på Diana i olika åldrar, utan att avslöja hur gammal hon var. Alla gissar, och sedan avslöjar Diana svaren.",
-    needed: ["Gamla foton på Diana", "Utskrivna foton eller en digital presentation", "Svarslappar & pennor"],
-    submit: "photos",
   },
   {
-    number: "II",
+    number: "III",
     title: "The Ara Tapes",
-    when: "Under middagen",
+    when: "Under kvällen",
     intro:
       "Innan helgen svarar Ara i hemlighet på frågor om Diana och deras relation, och svaren spelas in på video. Diana får samma fråga, svarar, och sedan spelar vi upp Aras svar. Matchar de?",
     listTitle: "Förslag på frågor",
@@ -365,31 +366,20 @@ export const games: Game[] = [
       "Vad tror du att Diana älskar mest med dig?",
       "Var ser ni er själva om tio år?",
     ],
-    needed: ["Färdiga frågor", "Aras videor inspelade", "Laptop / TV / AirPlay testat"],
-  },
-  {
-    number: "III",
-    title: "Gissa minnet",
-    when: "Under kvällen",
-    intro:
-      "Innan helgen skickar alla in ETT minne med Diana, anonymt. Under kvällen läser Diana upp dem ett i taget och gissar vem som skrev vilket. Var specifik och gärna rolig, och gör det klurigt att gissa.",
-    needed: ["Ett anonymt minne från varje gäst"],
-    submit: "memoryForm",
   },
   {
     number: "IV",
-    title: "Hemliga uppdrag",
-    when: "Hela dagen",
+    title: "Gissa minnet",
+    when: "Under kvällen",
     intro:
-      "Alla får ett hemligt uppdrag på morgonen som ska genomföras utan att Diana märker något. Efter middagen avslöjar alla sina uppdrag, och Diana gissar vad var och en försökte göra.",
-    needed: ["12–13 unika uppdrag", "Utskrivna uppdragskort i kuvert"],
+      "Innan helgen skriver alla ett minne med Diana. Under kvällen läser Diana upp dem ett i taget och gissar vem som skrev vilket. Var specifik och gärna rolig, och gör det klurigt att gissa.",
+    submit: "memory",
   },
   {
     number: "V",
     title: "Vem är mest trolig — Men Edition",
     when: "Efter middagen",
-    intro:
-      "En lekfull grupplek om relationer, män, dejting och livet som gift. Alla pekar samtidigt på tre.",
+    intro: "En lekfull grupplek om relationer, män, dejting och livet som gift. Alla pekar samtidigt på tre.",
     listTitle: "Vem är mest trolig att …",
     list: [
       "… ha en partner som inte hittar något i kylen, fast det står längst fram?",
@@ -405,7 +395,6 @@ export const games: Game[] = [
       "… ha sparat varenda meddelande från första dejten?",
       "… låta sin partner tro att det var hans idé?",
     ],
-    needed: ["Färdiga påståenden"],
   },
   {
     number: "VI",
@@ -424,7 +413,6 @@ export const games: Game[] = [
       "Vilken dokusåpa skulle Diana överleva längst i?",
       "Vad gör Diana och Ara en vanlig lördag om 15 år?",
     ],
-    needed: ["Frågekort", "Levande ljus vid poolen"],
   },
 ];
 
@@ -436,7 +424,7 @@ export const forDiana = {
   scrapbook: {
     title: "Scrapbooken",
     status: "tbc" as Status,
-    text: "En bok fylld med oss, som sätts ihop innan helgen och ges till Diana. Alla bidrar med 1–3 foton och ett personligt brev.",
+    text: "En scrapbook av Dianas liv och minnen genom åren: ett collage med stora och små bilder, utklipp, inside jokes och era brev blandat. Skicka in allt ni har, så väljer vi ut.",
   },
   museum: {
     title: "Diana Museum",
@@ -447,97 +435,49 @@ export const forDiana = {
   spa: {
     title: "Spa-present",
     status: "idea" as Status,
-    text: "En spabehandling eller massage till Diana som gruppgåva.",
+    text: "En spabehandling eller massage till Diana som gruppgåva. Läggs till om budgeten tillåter.",
   },
 };
 
 /* ------------------------------------------------------------
- *  INKÖPSLISTA
- *  Byt status till "done" när något är köpt/klart.
+ *  DET VI KÖPER IN  (sidan /inkop)
+ *  Lägg till eller ta bort rader i listorna nedan.
  * ---------------------------------------------------------- */
 
-export type ChecklistItem = { label: string; status: Status };
-export type ChecklistCategory = { title: string; items: ChecklistItem[] };
-
-export const checklist: ChecklistCategory[] = [
-  {
-    title: "Dekoration",
-    items: [
-      { label: "Ballonger", status: "toBuy" },
-      { label: "Ljus / LED-ljus", status: "toBuy" },
-      { label: "Blommor", status: "toBuy" },
-      { label: "Bordsdekoration", status: "toBuy" },
-      { label: "Utskrivna foton", status: "toBuy" },
-      { label: "Brud-dekorationer", status: "toBuy" },
-      { label: "Serveringsartiklar vid behov", status: "tbc" },
-    ],
-  },
-  {
-    title: "Middag & kväll",
-    items: [
-      { label: "Champagne / mousserande", status: "toBuy" },
-      { label: "Alkoholfritt bubbel", status: "toBuy" },
-      { label: "Vin", status: "toBuy" },
-      { label: "Ingredienser till drinkar", status: "toBuy" },
-      { label: "Läsk", status: "toBuy" },
-      { label: "Vatten", status: "toBuy" },
-      { label: "Is", status: "toBuy" },
-      { label: "Nattmacka & snacks", status: "toBuy" },
-      { label: "Snacks vid poolen", status: "toBuy" },
-    ],
-  },
-  {
-    title: "Lördagsfrukost",
-    items: [
-      { label: "Frukostmat", status: "toBuy" },
-      { label: "Kaffe", status: "toBuy" },
-      { label: "Juice", status: "toBuy" },
-      { label: "Frukt", status: "toBuy" },
-      { label: "Champagne / alkoholfritt", status: "toBuy" },
-    ],
-  },
-  {
-    title: "Söndagsfrukost",
-    items: [
-      { label: "Bröd", status: "toBuy" },
-      { label: "Pålägg", status: "toBuy" },
-      { label: "Ägg / frukostartiklar", status: "toBuy" },
-      { label: "Frukt", status: "toBuy" },
-      { label: "Juice", status: "toBuy" },
-      { label: "Kaffe", status: "toBuy" },
-    ],
-  },
-  {
-    title: "Lekar",
-    items: [
-      { label: "Utskrivna foton på Diana", status: "toBuy" },
-      { label: "Pennor", status: "toBuy" },
-      { label: "Papper / kort", status: "toBuy" },
-      { label: "Kuvert till hemliga uppdrag", status: "toBuy" },
-      { label: "Aras videor", status: "tbc" },
-      { label: "Bidrag till Gissa minnet", status: "tbc" },
-      { label: "Laptop / HDMI / AirPlay", status: "tbc" },
-    ],
-  },
-  {
-    title: "Bruden",
-    items: [
-      { label: "Vit kvällsoutfit", status: "toBuy" },
-      { label: "Brud-accessoarer", status: "toBuy" },
-      { label: "Hemlig packlista för Diana", status: "tbc" },
-    ],
-  },
-  {
-    title: "Minnen",
-    items: [
-      { label: "Scrapbook", status: "toBuy" },
-      { label: "Utskrivna fotografier", status: "toBuy" },
-      { label: "Brev från alla", status: "tbc" },
-      { label: "Material till Diana Museum", status: "idea" },
-    ],
-  },
-  {
-    title: "Möjlig gruppgåva",
-    items: [{ label: "Spabehandling / massage till Diana", status: "idea" }],
-  },
-];
+export const shopping = {
+  note: "Allt det här ingår i budgeten. Solin, Dene & Lara köper in allt, så kommer alla redo som de är!",
+  categories: [
+    {
+      title: "Dekoration",
+      items: ["Ljus / LED-ljus", "Blommor", "Bordsdekoration", "Utskrivna foton", "Brud-dekorationer", "Serveringsartiklar vid behov"],
+    },
+    {
+      title: "Middag & kväll",
+      items: ["Bubbel + alkoholfritt", "Vin", "Ingredienser till drinkar", "Läsk", "Nattmacka & snacks", "Snacks vid poolen"],
+    },
+    {
+      title: "Lördagsfrukost",
+      items: ["Frukostmat", "Fikabröd", "Våfflor / pannkakor", "Kaffe", "Juice", "Frukt"],
+    },
+    {
+      title: "Söndagsfrukost",
+      items: ["Bröd", "Pålägg", "Ägg / frukostartiklar", "Frukt", "Juice", "Kaffe"],
+    },
+    {
+      title: "Lekar",
+      items: ["Aras videor", "Bidrag till Gissa minnet", "Laptop / HDMI"],
+    },
+    {
+      title: "Bruden",
+      items: ["Vit kvällsoutfit", "Brud-accessoarer", "Hemlig packlista för Diana"],
+    },
+    {
+      title: "Minnen",
+      items: ["Scrapbook", "Utskrivna fotografier", "Brev från alla", "Material till Diana Museum"],
+    },
+    {
+      title: "Möjlig gruppgåva",
+      items: ["Spabehandling / massage till Diana, om budgeten tillåter"],
+    },
+  ],
+};

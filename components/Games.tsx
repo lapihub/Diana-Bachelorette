@@ -1,6 +1,5 @@
 import Link from "next/link";
-import SubmitLink from "@/components/SubmitLink";
-import { games, links } from "@/content/weekend";
+import { games } from "@/content/weekend";
 
 export default function Games() {
   return (
@@ -44,27 +43,13 @@ export default function Games() {
                 </div>
               )}
 
-              <p className="mt-8 text-sm text-ink-soft">
-                <span className="label mr-3 text-ink">Behövs</span>
-                {game.needed.join(" · ")}
-              </p>
-
-              {game.submit === "memoryForm" && (
-                <div className="mt-8">
-                  <SubmitLink
-                    href={links.memoryForm}
-                    label="Skicka ditt minne"
-                    fallback="Skicka ditt minne privat till arrangörerna"
-                  />
-                </div>
-              )}
-              {game.submit === "photos" && (
+              {game.submit === "memory" && (
                 <div className="mt-8">
                   <Link
-                    href="/bilder"
+                    href="/bilder#minne"
                     className="label inline-flex items-center gap-3 border border-ink px-6 py-3.5 text-ink transition-colors hover:bg-ink hover:text-ivory"
                   >
-                    Skicka bilder <span aria-hidden>→</span>
+                    Skriv ditt minne <span aria-hidden>→</span>
                   </Link>
                 </div>
               )}

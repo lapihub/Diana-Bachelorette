@@ -7,8 +7,8 @@ export const pages = [
   { href: "/packa", label: "Packlista", description: "Dresscode och vad du tar med dig" },
   { href: "/lekar", label: "Lekar", description: "Hemligheter & lite kaos" },
   { href: "/till-diana", label: "Till Diana", description: "Scrapbooken och Diana Museum" },
-  { href: "/bilder", label: "Skicka bilder", description: "Ladda upp bilder med eller på Diana" },
-  { href: "/inkop", label: "Inköp", description: "Det vi behöver köpa" },
+  { href: "/bilder", label: "Bilder & minnen", description: "Skicka bilder och ett minne med Diana" },
+  { href: "/inkop", label: "Inköp", description: "Det vi köper in, som ingår i budgeten" },
 ] as const;
 
 export type PageHref = (typeof pages)[number]["href"];

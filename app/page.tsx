@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import { cancellationDeadline, event, links, paymentDeadline } from "@/content/weekend";
+import { event } from "@/content/weekend";
 import { pages } from "@/lib/pages";
 
 export default function Home() {

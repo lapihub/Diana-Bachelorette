@@ -42,7 +42,6 @@ export default function Schedule() {
 
       <div data-reveal className="mx-auto mt-24 max-w-4xl bg-paper px-6 py-10 sm:px-12">
         <h2 className="text-center font-serif text-3xl italic text-ink">Att ta sig dit</h2>
-        <p className="mt-2 text-center text-sm text-ink-soft">Exakta adresser delas i gruppchatten.</p>
         <div className="mt-8 grid gap-8 sm:grid-cols-3">
           {transport.map((t) => (
             <div key={t.title}>

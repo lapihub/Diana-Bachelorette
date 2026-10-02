@@ -3,19 +3,19 @@ import NextPage from "@/components/NextPage";
 import PageHeader from "@/components/PageHeader";
 import Photos from "@/components/Photos";
 
-export const metadata: Metadata = { title: "Skicka bilder" };
+export const metadata: Metadata = { title: "Bilder & minnen" };
 
 export default function Page() {
   return (
     <>
       <PageHeader
-        eyebrow="Till scrapbooken, museet & lekarna"
+        eyebrow="Till scrapbooken & lekarna"
         title={
           <>
-            Skicka <em>bilder</em>
+            Bilder <em>&amp; minnen</em>
           </>
         }
-        intro="Har du bilder med Diana eller på Diana? Ladda upp så många du vill."
+        intro="Skicka allt ni har med Diana, och skriv ett minne till leken Gissa minnet."
       />
       <Photos />
       <NextPage current="/bilder" />
