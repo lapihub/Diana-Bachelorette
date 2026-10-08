@@ -3,7 +3,7 @@ import StatusPill from "@/components/StatusPill";
 import { forDiana } from "@/content/weekend";
 
 export default function ForDiana() {
-  const { scrapbook, museum, spa } = forDiana;
+  const { scrapbook, museum } = forDiana;
 
   return (
     <div className="container-editorial">
