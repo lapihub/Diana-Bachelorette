@@ -38,14 +38,6 @@ export default function ForDiana() {
             ))}
           </ol>
         </article>
-
-        <article data-reveal className="border border-champagne/60 p-8 sm:p-12">
-          <div className="flex flex-wrap items-center gap-3">
-            <h2 className="font-serif text-4xl text-ink sm:text-5xl">{spa.title}</h2>
-            <StatusPill status={spa.status} />
-          </div>
-          <p className="mt-4 font-serif text-xl leading-relaxed text-ink-soft">{spa.text}</p>
-        </article>
       </div>
     </div>
   );

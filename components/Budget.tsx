@@ -29,11 +29,6 @@ export default function Budget() {
           <p className="mx-auto mt-5 max-w-sm font-serif text-lg italic text-ink-soft">{budget.dianaNote}</p>
         </div>
       </div>
-
-      <p data-reveal className="mx-auto mt-10 max-w-2xl text-center font-serif text-xl text-ink">
-        Betalas senast <em className="text-gold-deep">{paymentDeadline.day} {paymentDeadline.month}</em>
-        {links.payment ? ` · ${links.payment}` : ". Betalinfo delas i gruppchatten."}
-      </p>
     </div>
   );
 }

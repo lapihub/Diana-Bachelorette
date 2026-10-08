@@ -117,7 +117,7 @@ export const schedule: ScheduleDay[] = [
         title: "Keramikmålning",
         description: "Vi målar varsin keramikpjäs som minne från dagen.",
         location: "Webloom Ceramics - Norrtullsgatan 31",
-        status: "tbc",
+        status: "booked",
       },
       {
         time: "15:00",
@@ -214,8 +214,6 @@ export const villa = {
   /** Tjänster som Noblet erbjuder via huset. */
   services: [
     { title: "Privatkock", text: "Vår plan för lördagsmiddagen.", status: "toBook" as Status },
-    { title: "Catering", text: "Möjligt alternativ.", status: "idea" as Status },
-    { title: "Eventplanering", text: "Hjälp med upplägg och dukning.", status: "idea" as Status },
   ],
   gallery: [
     {
@@ -259,15 +257,15 @@ export type BudgetItem = {
 
 export const budget = {
   items: [
-    { label: "Frukost hos Dianas föräldrar", min: 160, status: "confirmed" },
-    { label: "Keramikmålning", min: 220, max: 500, status: "tbc" },
-    { label: "Boende", min: 900, status: "booked" },
-    { label: "Privatkock", min: 700, status: "toBook" },
-    { label: "Dekorationer", min: 150, status: "confirmed" },
-    { label: "Söndagsfrukost", min: 150, status: "confirmed" },
+    { label: "Frukost hos Dianas föräldrar", min: 100, status: "confirmed" },
+    { label: "Keramikmålning", min: 220, max: 500, status: "booked" },
+    { label: "Boende", min: 1338, status: "booked" },
+    { label: "Privatkock", min: 520, max: 700, status: "toBook" },
+    { label: "Dekorationer", min: 50, status: "confirmed" },
+    { label: "Kvällssnacks + Söndagsfrukost", min: 100, status: "confirmed" },
   ] satisfies BudgetItem[],
-  extras: ["transport", "dryck", "snacks", "Dianas outfit", "scrapbook", "Diana Museum", "eventuell spa-present"],
-  estimate: "ca 2 500–3 000 kr",
+  extras: ["transport", "Dianas outfit"],
+  estimate: "ca 2 300–3000 kr",
   dianaNote: "Diana betalar ingenting. Hennes andel delas av oss andra.",
 };
 
@@ -377,7 +375,7 @@ export const games: Game[] = [
   },
   {
     number: "V",
-    title: "Vem är mest trolig — Men Edition",
+    title: "Vem är mest trolig - Men Edition",
     when: "Efter middagen",
     intro: "En lekfull grupplek om relationer, män, dejting och livet som gift. Alla pekar samtidigt på tre.",
     listTitle: "Vem är mest trolig att …",
@@ -432,11 +430,6 @@ export const forDiana = {
     text: "En hörna i villan med bitar ur Dianas liv, som en liten utställning hon går runt i: foton, skärmdumpar, gamla meddelanden, biljetter, citat och handskrivna minnen.",
     rooms: ["De tidiga åren", "Tonårsarkivet", "Vänskapsåren", "Diana & Ara", "Brud-eran"],
   },
-  spa: {
-    title: "Spa-present",
-    status: "idea" as Status,
-    text: "En spabehandling eller massage till Diana som gruppgåva. Läggs till om budgeten tillåter.",
-  },
 };
 
 /* ------------------------------------------------------------
@@ -474,10 +467,6 @@ export const shopping = {
     {
       title: "Minnen",
       items: ["Scrapbook", "Utskrivna fotografier", "Brev från alla", "Material till Diana Museum"],
-    },
-    {
-      title: "Möjlig gruppgåva",
-      items: ["Spabehandling / massage till Diana, om budgeten tillåter"],
     },
   ],
 };

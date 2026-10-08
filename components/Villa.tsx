@@ -80,7 +80,7 @@ export default function Villa() {
             </ul>
           </div>
           <div>
-            <p className="label text-gold-deep">Service via {villa.host}</p>
+            <p className="label text-gold-deep">Service på {villa.host}</p>
             <ul className="mt-5 space-y-4">
               {villa.services.map((s) => (
                 <li key={s.title} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-champagne/50 pb-4">
