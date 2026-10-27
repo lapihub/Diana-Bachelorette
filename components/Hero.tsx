@@ -19,7 +19,7 @@ export default function Hero() {
       </div>
 
       <div className="relative mt-auto px-6 pb-16 pt-32 text-center sm:pb-24">
-        <p className="mb-6 inline-block rounded-full bg-ivory/85 px-6 py-3 font-sans text-sm font-medium uppercase tracking-[0.2em] text-ink backdrop-blur-sm sm:mb-10 sm:text-lg">
+        <p className="mb-6 font-serif text-2xl font-medium italic tracking-[0.04em] text-ink [text-shadow:0_1px_12px_#FBF8F2,0_0_24px_#FBF8F2] sm:mb-10 sm:text-3xl">
           Välkommen till
         </p>
         <h1>
