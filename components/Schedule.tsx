@@ -1,5 +1,5 @@
 import StatusPill from "@/components/StatusPill";
-import { schedule, transport } from "@/content/weekend";
+import { links, schedule, transport } from "@/content/weekend";
 
 export default function Schedule() {
   return (
@@ -42,6 +42,11 @@ export default function Schedule() {
 
       <div data-reveal className="mx-auto mt-24 max-w-4xl bg-paper px-6 py-10 sm:px-12">
         <h2 className="text-center font-serif text-3xl italic text-ink">Att ta sig dit</h2>
+        <p className="mt-4 text-center">
+          <a href={links.map} target="_blank" rel="noopener noreferrer" className="label text-ink underline decoration-gold/60 underline-offset-4">
+            Visa Karlbergs strand 15 på kartan
+          </a>
+        </p>
         <div className="mt-8 grid gap-8 sm:grid-cols-3">
           {transport.map((t) => (
             <div key={t.title}>

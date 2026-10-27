@@ -2,7 +2,7 @@
 // from the hero photo. Run with: npm run og
 import sharp from "sharp";
 
-const source = "public/villa/living-room.png";
+const source = "app/bilder/balkong.avif";
 const target = "public/og.jpg";
 
 await sharp(source)

@@ -12,7 +12,7 @@ export default function Hero() {
           priority
           placeholder="blur"
           sizes="100vw"
-          className="animate-slow-zoom object-cover object-[50%_35%]"
+          className="animate-slow-zoom object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ivory/10 via-ivory/25 to-ivory" />
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ivory via-ivory/85 to-transparent" />

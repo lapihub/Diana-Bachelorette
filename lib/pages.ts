@@ -2,7 +2,7 @@
 export const pages = [
   { href: "/", label: "Hem", description: "" },
   { href: "/helgen", label: "Helgen", description: "Schemat och hur vi tar oss dit" },
-  { href: "/villan", label: "Villan", description: "Vårt hem för natten" },
+  { href: "/villan", label: "Vårt hem", description: "Vårt hem för natten" },
   { href: "/budget", label: "Budget", description: "Vad det kostar och när du betalar" },
   { href: "/packa", label: "Packlista", description: "Dresscode och vad du tar med dig" },
   { href: "/lekar", label: "Lekar", description: "Hemligheter & lite kaos" },

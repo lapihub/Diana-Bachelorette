@@ -34,7 +34,7 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : "http://localhost:3000";
 
 const title = `${event.bride}s ${event.title}`;
-const description = `${event.dateLabel} · ${event.locationLabel}. Schema, villan, budget, lekar och allt vi behöver.`;
+const description = `${event.dateLabel} · ${event.locationLabel}. Schema, vårt hem för natten, budget, lekar och allt vi behöver.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

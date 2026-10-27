@@ -8,7 +8,7 @@
  *
  *  STATUS — använd något av dessa ord (inom citattecken):
  *    "confirmed"  → bekräftat   (visas inte, det är standard)
- *    "booked"     → BOKAT       (visas bara på villan)
+ *    "booked"     → BOKAT       (visas bara på boendesidan)
  *    "toBook"     → ATT BOKA
  *    "tbc"        → TBC
  *    "idea"       → IDÉ
@@ -20,10 +20,12 @@
 import type { StaticImageData } from "next/image";
 import type { Status } from "@/lib/status";
 
-import livingRoom from "@/public/villa/living-room.png";
-import pool from "@/public/villa/pool.png";
-import dinner from "@/public/villa/dinner.png";
-import residence from "@/public/villa/residence.png";
+import livingRoom from "@/app/bilder/vardagsrum.avif";
+import livingRoomDetail from "@/app/bilder/vardagsrum-2.avif";
+import kitchen from "@/app/bilder/kök.avif";
+import bedroom from "@/app/bilder/sovrum.avif";
+import balcony from "@/app/bilder/balkong.avif";
+import residence from "@/app/bilder/lägenhet.webp";
 
 /* ------------------------------------------------------------
  *  GRUNDINFO
@@ -33,7 +35,7 @@ export const event = {
   bride: "Diana",
   title: "Bridal Weekend",
   dateLabel: "21–22 november 2026",
-  locationLabel: "Viksjö, Stockholm",
+  locationLabel: "Huvudsta, Solna",
   intro:
     "Allt du behöver veta inför Dianas bridal weekend finns samlat här. Läs igenom, förbered dig och håll länken hemlig för bruden.",
 };
@@ -45,7 +47,8 @@ export const event = {
  * ---------------------------------------------------------- */
 
 export const links = {
-  airbnb: "https://www.airbnb.se/rooms/1780669211066889679",
+  airbnb: "https://www.airbnb.se/rooms/574282927737091311",
+  map: "https://www.google.com/maps/search/?api=1&query=Karlbergs+strand+15%2C+171+73+Solna",
   /**
    * Nyckel till minnesformuläret (Web3Forms). Varje inskickat minne
    * kommer som ett mejl. Ny nyckel skapas gratis på web3forms.com.
@@ -120,28 +123,28 @@ export const schedule: ScheduleDay[] = [
         status: "booked",
       },
       {
-        time: "15:00",
-        title: "Incheckning i villan",
-        description: "Vi checkar in i Viksjö och gör i ordning dekorationerna innan kvällen.",
-        location: "Basetvägen 2 - Järfälla",
+        time: "16:00",
+        title: "Incheckning i lägenheten",
+        description: "Vi checkar in i Huvudsta och gör i ordning dekorationerna innan kvällen.",
+        location: "Karlbergs strand 15, 171 73 Solna",
         status: "confirmed",
       },
       {
-        time: "16:00",
+        time: "ca 16:30",
         title: "Bubbel & förberedelser",
         description: "Lite häng, bubbel och förberedelser för kvällen. Diana byter om till sin vita kvällsoutfit.",
         status: "tbc",
       },
       {
         time: "ca 19:00",
-        title: "Middag med privatkock",
-        description: "En privatkock lagar middag åt oss i villan. Under middagen kör vi flera av lekarna.",
+        title: "Middag på restaurang",
+        description: "Vi äter middag tillsammans på restaurang. Restaurang meddelas senare – bokning återstår.",
         status: "toBook",
       },
       {
         time: "sent",
-        title: "Pool After Dark",
-        description: "Levande ljus, poolen och en lugnare stund tillsammans.",
+        title: "Kvällsaktiviteter",
+        description: "Efter restaurangmiddagen går vi hem till lägenheten för lekar, snacks och häng tillsammans.",
         status: "confirmed",
       },
     ],
@@ -153,13 +156,13 @@ export const schedule: ScheduleDay[] = [
       {
         time: "ca 09:30",
         title: "Söndagsfrukost",
-        description: "Frukost tillsammans i villan.",
+        description: "Frukost tillsammans i lägenheten innan vi packar ihop.",
         status: "confirmed",
       },
       {
-        time: "11:00",
+        time: "10:00",
         title: "Utcheckning",
-        description: "Vi packar, städar av och lämnar villan.",
+        description: "Vi packar, städar av och lämnar lägenheten.",
         status: "confirmed",
       },
     ],
@@ -173,23 +176,23 @@ export const schedule: ScheduleDay[] = [
 export const transport: { title: string; text: string; status: Status }[] = [
   {
     title: "Under lördagen",
-    text: "Bolt/Uber eller samåkning mellan frukosten, keramiken och villan. Vi delar på kostnaden.",
+    text: "Bolt/Uber eller samåkning mellan frukosten, keramiken och lägenheten, samt till och från restaurangen. Vi delar på kostnaden. Upplägget bestäms när restaurangen är bokad.",
     status: "tbc",
   },
   {
-    title: "Till villan",
-    text: "Viksjö ligger i Järfälla, ungefär 25–30 minuter med bil från Stockholm city.",
+    title: "Till vårt boende",
+    text: "Vi bor på Karlbergs strand 15, 171 73 Solna, i Huvudsta vid vattnet. Incheckning lördag 16:00. Öppna kartlänken för att se adressen.",
     status: "confirmed",
   },
   {
     title: "Hem på söndag",
-    text: "Utcheckning 11:00. Samåkning, Bolt eller kollektivtrafik.",
+    text: "Utcheckning 10:00 från lägenheten i Huvudsta. Samåkning, Bolt/Uber eller kollektivtrafik. Vi bestämmer hemresan tillsammans.",
     status: "tbc",
   },
 ];
 
 /* ------------------------------------------------------------
- *  VILLAN
+ *  VÅRT HEM
  * ---------------------------------------------------------- */
 
 export type GalleryImage = {
@@ -201,43 +204,52 @@ export type GalleryImage = {
 };
 
 export const villa = {
-  host: "Noblet",
-  location: "Viksjö, Stockholm",
-  checkIn: "Lördag 15:00",
-  checkOut: "Söndag 11:00",
+  host: "Patrik",
+  location: "Huvudsta, Solna",
+  address: "Karlbergs strand 15, 171 73 Solna",
+  checkIn: "Lördag 16:00",
+  checkOut: "Söndag 10:00",
   status: "booked" as Status,
   description:
-    "Ett klassiskt rött hus vid vattnet utanför Stockholm, med inomhuspool, bastu och stora, ljusa sällskapsrum.",
-  heroImage: livingRoom,
-  poolImage: pool,
-  amenities: ["Inomhuspool", "Bastu", "Gym", "Stora sällskapsytor", "Matsal", "Kök", "Övernattning"],
-  /** Tjänster som Noblet erbjuder via huset. */
-  services: [
-    { title: "Privatkock", text: "Vår plan för lördagsmiddagen.", status: "toBook" as Status },
-  ],
+    "Vårt hem för natten är en nyrenoverad, historisk lägenhet i en villa från 1878 vid vattnet i Huvudsta. Här möts 1800-talets charm och ljusa rum, med kök och balkong med sjöutsikt – vår samlingspunkt före och efter restaurangmiddagen.",
+  heroImage: balcony,
+  amenities: ["Balkong med sjöutsikt", "Två sovrum", "Vardagsrum", "Kök & matplats", "Wifi", "Badrum"],
+  area: "Karlbergs strand ligger vid vattnet i Huvudsta, Solna. Här möts äldre hus, grönska och strandpromenader nära Stockholm. Efter middagen samlas vi i lägenheten för lekar och en mysig kväll tillsammans.",
   gallery: [
     {
       src: livingRoom,
-      alt: "Vardagsrum med kristallkrona, guldram-spegel och ljusa soffor",
-      caption: "Salongen",
+      alt: "Vardagsrummet i lägenheten vid Karlbergs strand",
+      caption: "Vårt vardagsrum",
       size: "large",
     },
     {
-      src: pool,
-      alt: "Inomhuspool med stenplattor och trappor ner i vattnet",
-      caption: "Inomhuspoolen",
+      src: residence,
+      alt: "Gul trävilla med gröna detaljer och grönska vid Karlbergs strand",
+      caption: "Huset vid Karlbergs strand",
       size: "tall",
     },
     {
-      src: dinner,
-      alt: "Matsal med långbord och bentwood-stolar framför stora fönster",
-      caption: "Matsalen",
+      src: balcony,
+      alt: "Lägenhetens balkong med utsikt mot vattnet",
+      caption: "Balkongen & utsikten",
       size: "wide",
     },
     {
-      src: residence,
-      alt: "Rött trähus med vita knutar vid sjön en sommardag",
-      caption: "Huset vid vattnet",
+      src: kitchen,
+      alt: "Köket i lägenheten",
+      caption: "Kök & frukosthäng",
+      size: "wide",
+    },
+    {
+      src: bedroom,
+      alt: "Sovrummet i lägenheten",
+      caption: "God natt i Huvudsta",
+      size: "wide",
+    },
+    {
+      src: livingRoomDetail,
+      alt: "En annan vy av lägenhetens vardagsrum",
+      caption: "Plats för kvällens lekar",
       size: "wide",
     },
   ] satisfies GalleryImage[],
@@ -252,6 +264,7 @@ export type BudgetItem = {
   label: string;
   min: number;
   max?: number;
+  approximate?: boolean;
   status: Status;
 };
 
@@ -259,13 +272,12 @@ export const budget = {
   items: [
     { label: "Frukost hos Dianas föräldrar", min: 100, status: "confirmed" },
     { label: "Keramikmålning", min: 220, max: 500, status: "booked" },
-    { label: "Boende", min: 1338, status: "booked" },
-    { label: "Privatkock", min: 520, max: 700, status: "toBook" },
-    { label: "Dekorationer", min: 50, status: "confirmed" },
+    { label: "Boende", min: 615, status: "booked" },
+    { label: "Middag", min: 700, approximate: true, status: "toBook" },
+    { label: "Dekorationer", min: 100, max: 200, status: "confirmed" },
     { label: "Kvällssnacks + Söndagsfrukost", min: 100, status: "confirmed" },
-  ] satisfies BudgetItem[],
+  ] as BudgetItem[],
   extras: ["transport", "Dianas outfit"],
-  estimate: "ca 2 300–3000 kr",
   dianaNote: "Diana betalar ingenting. Hennes andel delas av oss andra.",
 };
 
@@ -283,7 +295,6 @@ export const dressCode: { title: string; text: string; status?: Status }[] = [
 ];
 
 export const packingList: string[] = [
-  "Baddräkt / bikini",
   "Kvällsoutfit",
   "Bekväma kläder för dagen",
   "Mjukiskläder & nattkläder",
@@ -397,8 +408,8 @@ export const games: Game[] = [
   {
     number: "VI",
     title: "The Diana Files",
-    when: "Pool After Dark",
-    intro: "En lugnare lek vid poolen. Alla svarar på frågor om Diana, både roliga och sådana som betyder något.",
+    when: "Efter middagen, hemma",
+    intro: "En lugnare lek hemma i lägenheten. Alla svarar på frågor om Diana, både roliga och sådana som betyder något.",
     listTitle: "Frågorna",
     list: [
       "Vilket är ditt första minne av Diana?",
@@ -427,7 +438,7 @@ export const forDiana = {
   museum: {
     title: "Diana Museum",
     status: "idea" as Status,
-    text: "En hörna i villan med bitar ur Dianas liv, som en liten utställning hon går runt i: foton, skärmdumpar, gamla meddelanden, biljetter, citat och handskrivna minnen.",
+    text: "En hörna i lägenheten med bitar ur Dianas liv, som en liten utställning hon går runt i: foton, skärmdumpar, gamla meddelanden, biljetter, citat och handskrivna minnen.",
     rooms: ["De tidiga åren", "Tonårsarkivet", "Vänskapsåren", "Diana & Ara", "Brud-eran"],
   },
 };
@@ -445,8 +456,8 @@ export const shopping = {
       items: ["Ljus / LED-ljus", "Blommor", "Bordsdekoration", "Utskrivna foton", "Brud-dekorationer", "Serveringsartiklar vid behov"],
     },
     {
-      title: "Middag & kväll",
-      items: ["Bubbel + alkoholfritt", "Vin", "Ingredienser till drinkar", "Läsk", "Nattmacka & snacks", "Snacks vid poolen"],
+      title: "Bubbel & kvällshäng hemma",
+      items: ["Bubbel + alkoholfritt", "Vin", "Ingredienser till drinkar", "Läsk", "Nattmacka & snacks"],
     },
     {
       title: "Lördagsfrukost",

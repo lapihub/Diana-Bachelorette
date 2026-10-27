@@ -43,6 +43,14 @@ export default function Villa() {
           </div>
         </div>
 
+        <p data-reveal className="mx-auto mb-12 max-w-4xl text-center font-serif text-xl leading-relaxed text-ink-soft">
+          {villa.address}
+          <br />
+          <a href={links.map} target="_blank" rel="noopener noreferrer" className="label mt-3 inline-block text-ink underline decoration-gold/60 underline-offset-4">
+            Visa på kartan
+          </a>
+        </p>
+
         {/* Gallery */}
         <div className="grid grid-cols-1 gap-3 sm:gap-4 md:auto-rows-[13rem] md:grid-cols-6 lg:auto-rows-[15rem]">
           {villa.gallery.map((img) => (
@@ -66,10 +74,10 @@ export default function Villa() {
           ))}
         </div>
 
-        {/* Amenities & services */}
+        {/* The apartment and its surroundings */}
         <div data-reveal className="mx-auto mt-20 grid max-w-5xl gap-12 md:grid-cols-2">
           <div>
-            <p className="label text-gold-deep">I huset</p>
+            <p className="label text-gold-deep">I lägenheten</p>
             <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
               {villa.amenities.map((a) => (
                 <li key={a} className="flex items-center gap-3 font-serif text-2xl text-ink">
@@ -80,46 +88,12 @@ export default function Villa() {
             </ul>
           </div>
           <div>
-            <p className="label text-gold-deep">Service på {villa.host}</p>
-            <ul className="mt-5 space-y-4">
-              {villa.services.map((s) => (
-                <li key={s.title} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-champagne/50 pb-4">
-                  <span className="font-serif text-2xl text-ink">{s.title}</span>
-                  <span className="text-sm text-ink-soft">{s.text}</span>
-                  <StatusPill status={s.status} className="ml-auto" />
-                </li>
-              ))}
-            </ul>
+            <p className="label text-gold-deep">Vid vattnet i Huvudsta</p>
+            <p className="mt-5 font-serif text-xl leading-relaxed text-ink-soft">{villa.area}</p>
           </div>
         </div>
       </div>
 
-      {/* Pool After Dark */}
-      <section className="relative mt-24 overflow-hidden bg-night text-ivory">
-        <div className="relative h-[80svh] min-h-[30rem]">
-          <Image
-            src={villa.poolImage}
-            alt="Villans inomhuspool med stentrappor ner i det turkosa vattnet"
-            fill
-            placeholder="blur"
-            sizes="100vw"
-            className="object-cover object-[18%_center] brightness-[0.62] saturate-[0.85] md:object-[35%_60%]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/10 to-night" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_25%_75%,rgba(216,195,160,0.22),transparent_55%)]" />
-
-          <div className="absolute inset-x-0 bottom-0 px-6 pb-14 text-center sm:pb-20">
-            <p className="label text-champagne/90">Lördag · sent</p>
-            <h2 data-reveal className="mt-4 font-serif text-[3.6rem] font-light leading-[0.95] sm:text-8xl md:text-9xl">
-              Pool <em className="text-champagne">After Dark</em>
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl font-serif text-xl leading-relaxed text-ivory/85 sm:text-2xl">
-              När middagen är slut tänder vi ljusen och går ner till poolen. Varmt vatten, bastu, bubbel och en
-              lugnare stund tillsammans.
-            </p>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

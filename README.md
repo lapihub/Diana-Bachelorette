@@ -1,6 +1,6 @@
 # Dianas Bridal Weekend
 
-Vår gemensamma webbplats för helgen 21–22 november: schema, villan, budget, lekar, packlista och inköpslista.
+Vår gemensamma webbplats för helgen 21–22 november: schema, boendet, budget, lekar, packlista och inköpslista.
 
 Byggd med Next.js, TypeScript och Tailwind CSS. Ingen databas, ingen inloggning och inga API-nycklar. Sidan är helt statisk och gratis att hosta på Vercel.
 
@@ -24,7 +24,7 @@ npm run build    # testar att allt bygger korrekt innan du publicerar
 
 Där finns tider, adresser, priser, lekar, packlistan och det vi köper in. Varje del har en kommentar som förklarar vad den gör.
 
-Sidorna (Helgen, Villan, Budget, …) och deras ordning i menyn styrs av [`lib/pages.ts`](lib/pages.ts).
+Sidorna (Helgen, Vårt hem, Budget, …) och deras ordning i menyn styrs av [`lib/pages.ts`](lib/pages.ts).
 
 ### Exempel: lägga till något på sidan Inköp
 
@@ -37,8 +37,8 @@ items: ["Ljus / LED-ljus", "Blommor", "Konfetti"],
 ### Exempel: ändra ett pris
 
 ```ts
-{ label: "Privatkock", min: 700, status: "toBook" },             // före
-{ label: "Privatkock", min: 750, status: "booked" },             // efter
+{ label: "Middag", min: 700, status: "toBook" },             // före
+{ label: "Middag", min: 750, status: "booked" },             // efter
 { label: "Keramikmålning", min: 220, max: 500, status: "tbc" },  // spann: 220–500 kr
 ```
 
@@ -54,7 +54,7 @@ Sidan visar bara etiketter för det som inte är klart än, så att den inte bli
 | `"idea"`      | IDÉ                                     |
 | `"toBook"`    | ATT BOKA                                |
 | `"confirmed"` | ingen etikett (klart)                   |
-| `"booked"`    | ingen etikett (BOKAT visas bara på villan) |
+| `"booked"`    | ingen etikett (BOKAT visas bara på boendesidan) |
 
 ### Länkar (minnesformulär, bilduppladdning, Swish)
 
@@ -70,7 +70,7 @@ payment: "Swish 070-123 45 67",
 
 ### Adresser
 
-Lägg till `address: "Gatan 1, Viksjö"` på en rad i schemat om adressen ska visas. Tänk på att sidan är öppen för alla som har länken.
+Lägg till `address: "Karlbergs strand 15, Solna"` på en rad i schemat om adressen ska visas. Tänk på att sidan är öppen för alla som har länken.
 
 ---
 
@@ -113,16 +113,16 @@ Tips: kolla skräpposten första gången, och markera mejlet som "inte skräp". 
 
 ## 3. Byta eller lägga till foton
 
-Fotona ligger i [`public/villa/`](public/villa/).
+De aktuella boendebilderna ligger i [`app/bilder/`](app/bilder/).
 
-1. Lägg den nya bilden i `public/villa/`, t.ex. `bastu.jpg`.
+1. Lägg den nya bilden i `app/bilder/`, t.ex. `matplats.jpg`.
 2. Öppna `content/weekend.ts` och importera den högst upp:
    ```ts
-   import sauna from "@/public/villa/bastu.jpg";
+   import diningArea from "@/app/bilder/matplats.jpg";
    ```
 3. Lägg till den i `villa.gallery`:
    ```ts
-   { src: sauna, alt: "Bastun", caption: "Bastun", size: "small" },
+   { src: diningArea, alt: "Matplatsen", caption: "Matplatsen", size: "small" },
    ```
    `size` kan vara `"large"`, `"tall"`, `"wide"` eller `"small"`.
 
