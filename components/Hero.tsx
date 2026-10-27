@@ -19,7 +19,9 @@ export default function Hero() {
       </div>
 
       <div className="relative mt-auto px-6 pb-16 pt-32 text-center sm:pb-24">
-        <p className="label mb-6 text-ink-soft sm:mb-10">Välkommen till</p>
+        <p className="mb-6 inline-block rounded-full bg-ivory/85 px-6 py-3 font-sans text-sm font-medium uppercase tracking-[0.2em] text-ink backdrop-blur-sm sm:mb-10 sm:text-lg">
+          Välkommen till
+        </p>
         <h1>
           <span className="block pt-6 font-script text-[5.5rem] leading-[0.9] text-gold-deep sm:pt-14 sm:text-[9rem]">
             {event.bride}

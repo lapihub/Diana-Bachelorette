@@ -26,6 +26,7 @@ import kitchen from "@/app/bilder/kök.avif";
 import bedroom from "@/app/bilder/sovrum.avif";
 import balcony from "@/app/bilder/balkong.avif";
 import residence from "@/app/bilder/lägenhet.webp";
+import kitchenHero from "@/public/villa/kitchen-hero.png";
 
 /* ------------------------------------------------------------
  *  GRUNDINFO
@@ -212,7 +213,7 @@ export const villa = {
   status: "booked" as Status,
   description:
     "Vårt hem för natten är en nyrenoverad, historisk lägenhet i en villa från 1878 vid vattnet i Huvudsta. Här möts 1800-talets charm och ljusa rum, med kök och balkong med sjöutsikt – vår samlingspunkt före och efter restaurangmiddagen.",
-  heroImage: balcony,
+  heroImage: kitchenHero,
   amenities: ["Balkong med sjöutsikt", "Två sovrum", "Vardagsrum", "Kök & matplats", "Wifi", "Badrum"],
   area: "Karlbergs strand ligger vid vattnet i Huvudsta, Solna. Här möts äldre hus, grönska och strandpromenader nära Stockholm. Efter middagen samlas vi i lägenheten för lekar och en mysig kväll tillsammans.",
   gallery: [
