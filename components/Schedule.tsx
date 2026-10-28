@@ -24,7 +24,7 @@ export default function Schedule() {
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
                       <h3 className="font-serif text-2xl text-ink sm:text-3xl">{item.title}</h3>
-                      <StatusPill status={item.status} />
+                      <StatusPill status={item.status} force={item.status === "booked"} />
                     </div>
                     <p className="mt-2 max-w-prose text-[0.95rem] leading-relaxed text-ink-soft">{item.description}</p>
                     {(item.location || item.address) && (

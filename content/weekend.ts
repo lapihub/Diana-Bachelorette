@@ -124,7 +124,15 @@ export const schedule: ScheduleDay[] = [
         status: "booked",
       },
       {
-        time: "16:00",
+        time: "15:00",
+        title: "Escape room",
+        description: "Vi löser kluriga gåtor och försöker ta oss ut tillsammans.",
+        location: "Amazing Escape",
+        address: "Markvardsgatan 10",
+        status: "booked",
+      },
+      {
+        time: "från 16:00",
         title: "Incheckning i lägenheten",
         description: "Vi checkar in i Huvudsta och gör i ordning dekorationerna innan kvällen.",
         location: "Karlbergs strand 15, 171 73 Solna",
@@ -138,14 +146,14 @@ export const schedule: ScheduleDay[] = [
       },
       {
         time: "ca 19:00",
-        title: "Middag på restaurang",
-        description: "Vi äter middag tillsammans på restaurang. Restaurang meddelas senare – bokning återstår.",
+        title: "Libanesisk catering",
+        description: "Vi beställer in libanesisk catering som levereras till lägenheten och äter middag tillsammans där.",
         status: "toBook",
       },
       {
         time: "sent",
         title: "Kvällsaktiviteter",
-        description: "Efter restaurangmiddagen går vi hem till lägenheten för lekar, snacks och häng tillsammans.",
+        description: "Efter middagen fortsätter kvällen i lägenheten med lekar, presentationer, musik, snacks och häng tillsammans.",
         status: "confirmed",
       },
     ],
@@ -155,7 +163,7 @@ export const schedule: ScheduleDay[] = [
     date: "22 november",
     items: [
       {
-        time: "ca 09:30",
+        time: "09:00",
         title: "Söndagsfrukost",
         description: "Frukost tillsammans i lägenheten innan vi packar ihop.",
         status: "confirmed",
@@ -177,12 +185,12 @@ export const schedule: ScheduleDay[] = [
 export const transport: { title: string; text: string; status: Status }[] = [
   {
     title: "Under lördagen",
-    text: "Bolt/Uber eller samåkning mellan frukosten, keramiken och lägenheten, samt till och från restaurangen. Vi delar på kostnaden. Upplägget bestäms när restaurangen är bokad.",
+    text: "Bolt/Uber eller samåkning mellan frukosten, keramikmålningen, Escape room och lägenheten. Vi delar på kostnaden och bestämmer upplägget tillsammans.",
     status: "tbc",
   },
   {
     title: "Till vårt boende",
-    text: "Vi bor på Karlbergs strand 15, 171 73 Solna, i Huvudsta vid vattnet. Incheckning lördag 16:00. Öppna kartlänken för att se adressen.",
+    text: "Vi bor på Karlbergs strand 15, 171 73 Solna, i Huvudsta vid vattnet. Incheckning lördag från 16:00. Öppna kartlänken för att se adressen.",
     status: "confirmed",
   },
   {
@@ -208,11 +216,11 @@ export const villa = {
   host: "Patrik",
   location: "Huvudsta, Solna",
   address: "Karlbergs strand 15, 171 73 Solna",
-  checkIn: "Lördag 16:00",
+  checkIn: "Lördag från 16:00",
   checkOut: "Söndag 10:00",
   status: "booked" as Status,
   description:
-    "Vårt hem för natten är en nyrenoverad, historisk lägenhet i en villa från 1878 vid vattnet i Huvudsta. Här möts 1800-talets charm och ljusa rum, med kök och balkong med sjöutsikt – vår samlingspunkt före och efter restaurangmiddagen.",
+    "Vårt hem för natten är en nyrenoverad, historisk lägenhet i en villa från 1878 vid vattnet i Huvudsta. Här möts 1800-talets charm och ljusa rum, med kök och balkong med sjöutsikt – vår samlingspunkt för libanesisk catering, lekar och kvällshäng.",
   heroImage: kitchenHero,
   amenities: ["Balkong med sjöutsikt", "Två sovrum", "Vardagsrum", "Kök & matplats", "Wifi", "Badrum"],
   area: "Karlbergs strand ligger vid vattnet i Huvudsta, Solna. Här möts äldre hus, grönska och strandpromenader nära Stockholm. Efter middagen samlas vi i lägenheten för lekar och en mysig kväll tillsammans.",
@@ -273,8 +281,9 @@ export const budget = {
   items: [
     { label: "Frukost hos Dianas föräldrar", min: 100, status: "confirmed" },
     { label: "Keramikmålning", min: 220, max: 500, status: "booked" },
+    { label: "Escape room", min: 385, status: "booked" },
     { label: "Boende", min: 615, status: "booked" },
-    { label: "Middag", min: 700, approximate: true, status: "toBook" },
+    { label: "Libanesisk catering", min: 500, approximate: true, status: "toBook" },
     { label: "Dekorationer", min: 100, max: 200, status: "confirmed" },
     { label: "Kvällssnacks + Söndagsfrukost", min: 100, status: "confirmed" },
   ] as BudgetItem[],
@@ -353,10 +362,10 @@ export const games: Game[] = [
   },
   {
     number: "II",
-    title: "Hur gammal var bruden?",
+    title: "Låt-leken",
     when: "Under kvällen",
     intro:
-      "Vi visar foton på Diana i olika åldrar, utan att avslöja hur gammal hon var. Alla gissar, och sedan avslöjar Diana svaren.",
+      "Vi spelar i lag eller alla mot alla. Skriv lappar med låttitlar, artistnamn eller personnamn, till exempel förnamn som sjungs i kända låtar, och lägg dem mitt på bordet. En person sköter musiken och spelar en låt. När ordet eller namnet hörs gäller det att snabbt gripa rätt lapp från bordet.",
   },
   {
     number: "III",
@@ -389,40 +398,18 @@ export const games: Game[] = [
     number: "V",
     title: "Vem är mest trolig - Men Edition",
     when: "Efter middagen",
-    intro: "En lekfull grupplek om relationer, män, dejting och livet som gift. Alla pekar samtidigt på tre.",
-    listTitle: "Vem är mest trolig att …",
+    intro: "Vi genererar AI-bilder av oss alla som män och ger varje man ett eget namn. Bilderna visas i en presentation tillsammans med frågor. På tre pekar alla på den man som är mest trolig att passa in på frågan.",
+    listTitle: "Exempel på frågor",
     list: [
-      "… ha en partner som inte hittar något i kylen, fast det står längst fram?",
-      "… ha sagt ”vi tittar bara” i en möbelbutik och kommit hem med en soffa?",
-      "… vara den som planerar alla resor?",
-      "… ha en partner som säger ”jag är snart hemma” men inte ens har gått än?",
-      "… ha förnyat sin partners garderob utan att han märkt det?",
-      "… vinna en diskussion utan att egentligen ha rätt?",
-      "… få sin partner att gråta under bröllopstalet?",
-      "… ha blivit uppraggad på det mest oromantiska stället?",
-      "… ha en partner som ringer sin mamma för att fråga om råd?",
-      "… gifta sig näst?",
-      "… ha sparat varenda meddelande från första dejten?",
-      "… låta sin partner tro att det var hans idé?",
+      "Vem skulle vara en fuckboy?",
+      "Vem skulle vara en simp?",
     ],
   },
   {
     number: "VI",
-    title: "The Diana Files",
+    title: "Kahoot om Diana",
     when: "Efter middagen, hemma",
-    intro: "En lugnare lek hemma i lägenheten. Alla svarar på frågor om Diana, både roliga och sådana som betyder något.",
-    listTitle: "Frågorna",
-    list: [
-      "Vilket är ditt första minne av Diana?",
-      "Vad är det mest Diana-iga Diana gör?",
-      "Vilken Diana-era är din favorit?",
-      "Vilken låt får dig att tänka på Diana?",
-      "Vad kommer garanterat vara likadant med Diana när hon är 70?",
-      "Vad är Diana bättre på än hon själv inser?",
-      "Vart borde hela gruppen resa tillsammans en dag?",
-      "Vilken dokusåpa skulle Diana överleva längst i?",
-      "Vad gör Diana och Ara en vanlig lördag om 15 år?",
-    ],
+    intro: "Hur väl känner vi Diana? Vi kör ett Kahoot-spel med frågor om henne i en presentation. Alla svarar på sina mobiler och tävlar om vem som kan mest om bruden.",
   },
 ];
 
