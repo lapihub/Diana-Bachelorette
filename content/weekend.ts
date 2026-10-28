@@ -33,7 +33,7 @@ import kitchenHero from "@/public/villa/kitchen-hero.png";
  * ---------------------------------------------------------- */
 
 export const event = {
-  bride: "Diana",
+  bride: "Dianas",
   title: "Bridal Weekend",
   dateLabel: "21–22 november 2026",
   locationLabel: "Huvudsta, Solna",
